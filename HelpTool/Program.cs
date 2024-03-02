@@ -53,6 +53,10 @@ namespace HelpTool
                     IWshRuntimeLibrary.IWshShortcut shortcut = new IWshRuntimeLibrary.WshShell().CreateShortcut(args[1]) as IWshRuntimeLibrary.IWshShortcut;
                     shortcut.TargetPath = args[0];
                     shortcut.WorkingDirectory = args.Length > 2 ? args[2] : Path.GetDirectoryName(args[0]);
+                    if (args.Length > 3)
+                    {
+                        shortcut.Arguments = args[3];
+                    }
                     shortcut.Save();
                 }
                 catch
@@ -115,7 +119,7 @@ namespace HelpTool
             }
             else
             {
-                Console.WriteLine(russian ? "Примеры: HK[C\\U\\L] адрес \"SID|SID\" \\ файл \"00 00 00\" \"10 10 10\" \\ файл ярлык [папка]" : "Examples: HK[C\\U\\L] path \"SID|SID\" \\ file \"00 00 00\" \"10 10 10\" \\ Or: file shortcut [folder]");
+                Console.WriteLine(russian ? "Примеры: HK[C\\U\\L] адрес \"SID|SID\" \\ файл \"00 00 00\" \"10 10 10\" \\ файл ярлык [папка] [аргументы]" : "Examples: HK[C\\U\\L] path \"SID|SID\" \\ file \"00 00 00\" \"10 10 10\" \\ Or: file shortcut [folder] [arguments]");
             }
         }
         static void hexToByte(List<byte> list, string line)
