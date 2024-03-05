@@ -61,13 +61,11 @@ namespace WinTool
         string sCertificates = russian ? "Обновить корневые сертификаты? Поиск файла \"Рабочий стол\\roots.sst\" или скачивание." : "Update root certificates? Search for \"Desktop\\roots.sst\" file or download.";
         string sCompatibility = russian ? "Сбросить все параметры совместимости для всех приложений?" : "Reset all compatibility settings for all apps?";
         string sConfirm = russian ? "Подтвеждение" : "Confirmation";
-        string sExplorer = russian ? "Выключить Проводник?" : "Shutdown Explorer?";
+        string sExplorer = russian ? "Закрыть Проводник?" : "Close Explorer?";
         string sFolders = russian ? "Сбросить настройки отображения для всех папок?" : "Reset display settings for all folders?";
-        string sHalf = russian ? "Частично" : "Partially";
         string sLaunch = russian ? "Запустить?" : "Start?";
         string sMixer = russian ? "Сбросить настройки аудио микшера?" : "Reset audio mixer settings?";
-        string sOff = russian ? "Выключена" : "Off";
-        string sOn = russian ? "Включена" : "Enabled";
+        string sRestart = russian ? "При изменении требуется перезагрузка." : "Changes require a reboot.";
         string sRestore = russian ? "Удалить задачу автоматического создания точек восстановления?" : "Delete the automatic restore point creation task?";
         const int CS_DBLCLKS = 0x8;
         const int WS_MINIMIZEBOX = 0x20000;
@@ -95,7 +93,7 @@ namespace WinTool
                     {
                         uint mask = 0;
                         bool parse = UInt32.TryParse(line.Remove(0, line.IndexOf("=") + 1), out mask);
-                        List<Button> buttons = (parse && windows11) || (!parse && line.EndsWith("!")) ? new List<Button>() { contex_button1, contex_button2, contex_button3, contex_button4, contex_button5, contex_button6, contex_button7, contex_button8, contex_button9, service_button9, service_button10, service_button11 } : new List<Button>() { contex_button1, contex_button2, contex_button3, contex_button4, contex_button5, contex_button6, contex_button7, contex_button8, contex_button10, thispc_button3, thispc_button4, thispc_button5, thispc_button6, thispc_button7, service_button9, service_button10, service_button11 };
+                        List<Button> buttons = (parse && windows11) || (!parse && line.EndsWith("!")) ? new List<Button>() { contex_button1, contex_button2, contex_button3, contex_button4, contex_button5, contex_button6, contex_button7, contex_button8, contex_button9, service_button11, service_button12, service_button13, service_button14 } : new List<Button>() { contex_button1, contex_button2, contex_button3, contex_button4, contex_button5, contex_button6, contex_button7, contex_button8, contex_button10, thispc_button3, thispc_button4, thispc_button5, thispc_button6, thispc_button7, service_button11, service_button12, service_button13 };
                         List<string> list = new List<string>();
                         uint total = 0;
                         int count = buttons.Count - 1;
@@ -128,7 +126,7 @@ namespace WinTool
             }
             else
             {
-                tabControl1.Controls.Remove(tabPage4);
+                tabControl1.Controls.Remove(tabPage3);
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
@@ -145,8 +143,6 @@ namespace WinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void refrashValues()
         {
-            services_label3.Text = getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService", "Start", "4") ? sOff : getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") ? sHalf : sOn;
-            services_label6.Text = getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc", "Start", "4") ? sOff : sOn;
             setColor(contex_button1, @"HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\{90AA3A4E-1CBA-4233-B8BB-535773D48449}");
             setColor(contex_button2, @"HKEY_CLASSES_ROOT\exefile\shellex\ContextMenuHandlers\PintoStartScreen");
             setColor(contex_button3, @"HKEY_CLASSES_ROOT\Folder\shell\pintohome");
@@ -157,14 +153,14 @@ namespace WinTool
             setColor(contex_button8, @"HKEY_CLASSES_ROOT\Folder\shellex\ContextMenuHandlers\Library Location");
             if (windows11)
             {
-                setColor(service_button12, @"HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32");
                 contex_button10.Visible = false;
                 setColor(contex_button9, @"HKEY_CLASSES_ROOT\*\shell\pintohomefile");
+                setColor(service_button14, @"HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32", null, null, true);
             }
             else
             {
-                service_button12.Visible = false;
                 contex_button9.Visible = false;
+                service_button14.Visible = false;
                 setColor(contex_button10, @"HKEY_CLASSES_ROOT\exefile\shellex\ContextMenuHandlers\StartMenuExt");
                 setColor(thispc_button1, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}");
                 setColor(thispc_button2, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}");
@@ -174,49 +170,13 @@ namespace WinTool
                 setColor(thispc_button6, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}");
                 setColor(thispc_button7, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}");
             }
-            service_button7.ForeColor = getValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", "1") ? SystemColors.ControlText : Color.Red;
-            service_button8.ForeColor = File.Exists(Path.Combine(folderSystem, "Tasks", "Microsoft", "Windows", "SystemRestore", "SR")) ? SystemColors.ControlText : Color.Red;
-            service_button9.ForeColor = getAccessFile(screenClippingHost) ? SystemColors.ControlText : Color.Red;
-            service_button10.ForeColor = getValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate", "version", "999.999.999.999") ? Color.Red : SystemColors.ControlText;
-            service_button11.ForeColor = getAccessFile(defaultStart[0]) ? SystemColors.ControlText : Color.Red;
-        }
-        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        void services_button1_Click(object sender, System.EventArgs e)
-        {
-            importRegistry(new List<string>() {
-                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
-                "\"Start\"=dword:00000002",
-                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
-                "\"Start\"=dword:00000003"
-            }, 1);
-            blockUnblock(false, smartScreen, false, 2);
-            refrashValues();
-        }
-        void services_button2_Click(object sender, System.EventArgs e)
-        {
-            importRegistry(new List<string>() {
-                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
-                "\"Start\"=dword:00000004"
-            }, 1);
-            blockUnblock(true, smartScreen, false, 2);
-            refrashValues();
-        }
-        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        void services_button3_Click(object sender, EventArgs e)
-        {
-            importRegistry(new List<string>() {
-                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
-                "\"Start\"=dword:00000002"
-            }, 2);
-            refrashValues();
-        }
-        void services_button4_Click(object sender, EventArgs e)
-        {
-            importRegistry(new List<string>() {
-                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
-                "\"Start\"=dword:00000004"
-            }, 2);
-            refrashValues();
+            service_button7.ForeColor = getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService", "Start", "3") && getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc", "Start", "2") ? SystemColors.ControlText : Color.Red;
+            setColor(service_button8, @"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc", "Start", "2");
+            setColor(service_button9, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", "1");
+            service_button10.ForeColor = File.Exists(Path.Combine(folderSystem, "Tasks", "Microsoft", "Windows", "SystemRestore", "SR")) ? SystemColors.ControlText : Color.Red;
+            service_button11.ForeColor = getAccessFile(screenClippingHost) ? SystemColors.ControlText : Color.Red;
+            setColor(service_button12, @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate", "version", "999.999.999.999", true);
+            service_button13.ForeColor = getAccessFile(defaultStart[0]) ? SystemColors.ControlText : Color.Red;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void contex_button1_Click(object sender, EventArgs e)
@@ -438,6 +398,33 @@ namespace WinTool
         void service_button7_Click(object sender, EventArgs e)
         {
             importRegistry(service_button7.ForeColor != Color.Red ? new List<string>() {
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
+                "\"Start\"=dword:00000004"
+            } : new List<string>() {
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
+                "\"Start\"=dword:00000002",
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
+                "\"Start\"=dword:00000003"
+            }, 1);
+            blockUnblock(service_button7.ForeColor != Color.Red, smartScreen, false, 2);
+            MessageBox.Show(sRestart);
+            refrashValues();
+        }
+        void service_button8_Click(object sender, EventArgs e)
+        {
+            importRegistry(service_button8.ForeColor != Color.Red ? new List<string>() {
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
+                "\"Start\"=dword:00000004"
+            } : new List<string>() {
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
+                "\"Start\"=dword:00000002"
+            }, 2);
+            MessageBox.Show(sRestart);
+            refrashValues();
+        }
+        void service_button9_Click(object sender, EventArgs e)
+        {
+            importRegistry(service_button9.ForeColor != Color.Red ? new List<string>() {
                 @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]",
                 "\"EnableLUA\"=dword:00000000"
             } : new List<string>() {
@@ -446,21 +433,21 @@ namespace WinTool
             }, 2);
             refrashValues();
         }
-        void service_button8_Click(object sender, EventArgs e)
+        void service_button10_Click(object sender, EventArgs e)
         {
-            if (service_button8.ForeColor != Color.Red && dialogResult(sRestore, sConfirm))
+            if (service_button10.ForeColor != Color.Red && dialogResult(sRestore, sConfirm))
             {
                 startProcess(3, @"/delete /tn Microsoft\Windows\SystemRestore\SR /f");
             }
             tabControl1.Enabled = true;
             refrashValues();
         }
-        void service_button9_Click(object sender, EventArgs e)
+        void service_button11_Click(object sender, EventArgs e)
         {
-            blockUnblock(service_button9.ForeColor != Color.Red, screenClippingHost, false, 2);
+            blockUnblock(service_button11.ForeColor != Color.Red, screenClippingHost, false, 2);
             refrashValues();
         }
-        void service_button10_Click(object sender, EventArgs e)
+        void service_button12_Click(object sender, EventArgs e)
         {
             if (Directory.Exists(edgeUpdate) && getAccessFolder(edgeUpdate))
             {
@@ -471,8 +458,8 @@ namespace WinTool
                 }
                 deleteFolder(edgeUpdate);
             }
-            blockUnblock(service_button10.ForeColor != Color.Red, edgeUpdate, true, 1);
-            importRegistry(service_button10.ForeColor != Color.Red ? new List<string>() {
+            blockUnblock(service_button12.ForeColor != Color.Red, edgeUpdate, true, 1);
+            importRegistry(service_button12.ForeColor != Color.Red ? new List<string>() {
                 @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Edge]",
                 "\"DisplayVersion\"=\"999.999.999.999\"",
                 "\"Version\"=\"999.999.999.999\"",
@@ -517,10 +504,10 @@ namespace WinTool
             }, 2);
             refrashValues();
         }
-        void service_button11_Click(object sender, EventArgs e)
+        void service_button13_Click(object sender, EventArgs e)
         {
             tabControl1.Enabled = false;
-            bool block = service_button11.ForeColor != Color.Red;
+            bool block = service_button13.ForeColor != Color.Red;
             foreach (string line in defaultStart)
             {
                 blockUnblock(block, line);
@@ -528,16 +515,16 @@ namespace WinTool
             tabControl1.Enabled = true;
             refrashValues();
         }
-        void service_button12_Click(object sender, EventArgs e)
+        void service_button14_Click(object sender, EventArgs e)
         {
-            importRegistry(service_button12.ForeColor != Color.Red ? new List<string>() {
+            importRegistry(service_button14.ForeColor != Color.Red ? new List<string>() {
                 @"[-HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]"
             } : new List<string>() {
                 @"[HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]",
                 "@=\"\""
             }, 2);
             refrashValues();
-            MessageBox.Show(services_label7.Text);
+            MessageBox.Show(sRestart);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void thispc_button1_Click(object sender, EventArgs e)
@@ -590,9 +577,9 @@ namespace WinTool
             });
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        void setColor(Button button, string path)
+        void setColor(Button button, string path, string key = null, string expect = null, bool invert = false)
         {
-            button.ForeColor = getValue(path, null, null) ? SystemColors.ControlText : Color.Red;
+            button.ForeColor = getValue(path, key, expect) ? !invert ? SystemColors.ControlText : Color.Red : !invert ? Color.Red : SystemColors.ControlText;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void toggleButton(bool add, List<string> list)
@@ -603,8 +590,8 @@ namespace WinTool
             int count = list.Count;
             for (int i = 0; i < count; i++)
             {
-                bool disabled = getValue(wtRegPath + list[i], null, null);
-                bool enabled = getValue(list[i], null, null);
+                bool disabled = getValue(wtRegPath + list[i]);
+                bool enabled = getValue(list[i]);
                 if ((add && disabled) || (!add && enabled))
                 {
                     removeList.Add("[-" + (add ? list[i] : wtRegPath + list[i]) + "]");
@@ -633,7 +620,7 @@ namespace WinTool
             refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        bool getValue(string path, string key, string expect)
+        bool getValue(string path, string key = null, string expect = null)
         {
             try
             {
@@ -963,24 +950,14 @@ namespace WinTool
             service_button3.Text = "Reset mixer";
             service_button4.Text = "Reset compatibility";
             service_button6.Text = "Update certificates";
-            service_button8.Text = "System Restore Task";
-            service_button9.Text = "Screenshot by Win+Shift+S";
-            service_button11.Text = "Default Start";
-            service_button12.Text = "Classic contex menu";
+            service_button10.Text = "System Restore Task";
+            service_button11.Text = "Screenshot by Win+Shift+S";
+            service_button13.Text = "Default Start";
+            service_button14.Text = "New contex menu";
             service_label1.Text = "Various service commands:";
-            services_button1.Text = "Turn on";
-            services_button2.Text = "Turn off";
-            services_button3.Text = "Turn on";
-            services_button4.Text = "Turn off";
-            services_label1.Text = "Store Install Service:";
-            services_label2.Text = "Current state:";
-            services_label4.Text = "Firefall Windows:";
-            services_label5.Text = "Current state:";
-            services_label7.Text = "Changes require a reboot.";
-            tabPage1.Text = "Services";
             tabPage2.Text = "Context menu";
-            tabPage3.Text = "Service";
-            tabPage4.Text = "This computer";
+            tabPage1.Text = "Service";
+            tabPage3.Text = "This computer";
             thispc_button1.Text = "Desktop";
             thispc_button2.Text = "Documents";
             thispc_button3.Text = "3D objects";
