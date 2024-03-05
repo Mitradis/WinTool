@@ -518,9 +518,9 @@ namespace WinTool
         void service_button14_Click(object sender, EventArgs e)
         {
             importRegistry(service_button14.ForeColor != Color.Red ? new List<string>() {
-                @"[-HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]"
+                @"[HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]"
             } : new List<string>() {
-                @"[HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]",
+                @"[-HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]",
                 "@=\"\""
             }, 2);
             refrashValues();
