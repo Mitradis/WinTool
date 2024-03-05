@@ -190,6 +190,7 @@ namespace WinTool
                 "\"Start\"=dword:00000003"
             }, 1);
             blockUnblock(false, smartScreen, false, 2);
+            refrashValues();
         }
         void services_button2_Click(object sender, System.EventArgs e)
         {
@@ -198,6 +199,7 @@ namespace WinTool
                 "\"Start\"=dword:00000004"
             }, 1);
             blockUnblock(true, smartScreen, false, 2);
+            refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void services_button3_Click(object sender, EventArgs e)
@@ -206,6 +208,7 @@ namespace WinTool
                 @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
                 "\"Start\"=dword:00000002"
             }, 2);
+            refrashValues();
         }
         void services_button4_Click(object sender, EventArgs e)
         {
@@ -213,6 +216,7 @@ namespace WinTool
                 @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
                 "\"Start\"=dword:00000004"
             }, 2);
+            refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void contex_button1_Click(object sender, EventArgs e)
@@ -316,10 +320,10 @@ namespace WinTool
         {
             if (dialogResult(sExplorer, sConfirm))
             {
-                startProcess(1, "/f /im explorer.exe");
+                stopProcess("explorer.exe");
                 if (dialogResult(sLaunch, sConfirm))
                 {
-                    startProcess(2, null);
+                    startProcess(2);
                 }
             }
             tabControl1.Enabled = true;
@@ -328,9 +332,8 @@ namespace WinTool
         {
             if (dialogResult(sFolders, sConfirm))
             {
-                startProcess(1, "/f /im explorer.exe");
-                startProcess(1, "/f /im ShellExperienceHost.exe");
-                Thread.Sleep(1000);
+                stopProcess("explorer.exe");
+                stopProcess("ShellExperienceHost.exe");
                 startProcess(0, "export " + "\"" + @"HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\AllFolders" + "\" " + "\"" + tempExport + "\"");
                 importRegistry(new List<string>() {
                     @"[-HKEY_CURRENT_USER\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\Shell]",
@@ -358,7 +361,7 @@ namespace WinTool
                 {
                     deleteFile(line);
                 }
-                startProcess(2, null);
+                startProcess(2);
             }
             tabControl1.Enabled = true;
         }
@@ -366,13 +369,12 @@ namespace WinTool
         {
             if (dialogResult(sMixer, sConfirm))
             {
-                startProcess(1, "/f /im explorer.exe");
-                Thread.Sleep(1000);
+                stopProcess("explorer.exe");
                 importRegistry(new List<string>() {
                     @"[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\LowRegistry\Audio\PolicyConfig\PropertyStore]",
                     @"[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Internet Explorer\LowRegistry\Audio\PolicyConfig\PropertyStore]"
                 });
-                startProcess(2, null);
+                startProcess(2);
             }
             tabControl1.Enabled = true;
         }
@@ -442,6 +444,7 @@ namespace WinTool
                 @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]",
                 "\"EnableLUA\"=dword:00000001"
             }, 2);
+            refrashValues();
         }
         void service_button8_Click(object sender, EventArgs e)
         {
@@ -450,23 +453,24 @@ namespace WinTool
                 startProcess(3, @"/delete /tn Microsoft\Windows\SystemRestore\SR /f");
             }
             tabControl1.Enabled = true;
+            refrashValues();
         }
         void service_button9_Click(object sender, EventArgs e)
         {
             blockUnblock(service_button9.ForeColor != Color.Red, screenClippingHost, false, 2);
+            refrashValues();
         }
         void service_button10_Click(object sender, EventArgs e)
         {
             if (Directory.Exists(edgeUpdate) && getAccessFolder(edgeUpdate))
             {
-                startProcess(1, "/f /im msedge.exe");
+                stopProcess("msedge.exe");
                 foreach (string line in Directory.GetFileSystemEntries(edgeUpdate, "*.exe", SearchOption.AllDirectories))
                 {
-                    startProcess(1, "/f /im \"" + Path.GetFileName(line) + "\"");
+                    stopProcess(Path.GetFileName(line));
                 }
                 deleteFolder(edgeUpdate);
             }
-            createDirectory(edgeUpdate);
             blockUnblock(service_button10.ForeColor != Color.Red, edgeUpdate, true, 1);
             importRegistry(service_button10.ForeColor != Color.Red ? new List<string>() {
                 @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Edge]",
@@ -511,6 +515,7 @@ namespace WinTool
                 @"[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\ClientState\{F3C4FE00-EFD5-403B-9569-398A20F1BA4A}]",
                 "\"pv\"=\"90.0.0.0\""
             }, 2);
+            refrashValues();
         }
         void service_button11_Click(object sender, EventArgs e)
         {
@@ -521,6 +526,7 @@ namespace WinTool
                 blockUnblock(block, line);
             }
             tabControl1.Enabled = true;
+            refrashValues();
         }
         void service_button12_Click(object sender, EventArgs e)
         {
@@ -530,6 +536,7 @@ namespace WinTool
                 @"[HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]",
                 "@=\"\""
             }, 2);
+            refrashValues();
             MessageBox.Show(services_label7.Text);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
@@ -591,7 +598,8 @@ namespace WinTool
         void toggleButton(bool add, List<string> list)
         {
             tabControl1.Enabled = false;
-            List<string> cacheFile = new List<string>();
+            List<string> removeList = new List<string>();
+            List<string> importList = new List<string>();
             int count = list.Count;
             for (int i = 0; i < count; i++)
             {
@@ -599,27 +607,30 @@ namespace WinTool
                 bool enabled = getValue(list[i], null, null);
                 if ((add && disabled) || (!add && enabled))
                 {
-                    importRegistry(new List<string>() { "[-" + (add ? list[i] : wtRegPath + list[i]) + "]" });
+                    removeList.Add("[-" + (add ? list[i] : wtRegPath + list[i]) + "]");
                     startProcess(0, "export " + "\"" + (add ? wtRegPath + list[i] : list[i]) + "\" " + "\"" + tempExport + "\"");
                     if (File.Exists(tempExport))
                     {
-                        importRegistry(new List<string>() { "[-" + (add ? wtRegPath + list[i] : list[i]) + "]" });
+                        removeList.Add("[-" + (add ? wtRegPath + list[i] : list[i]) + "]");
                         List<string> exportFile = new List<string>(readTextFile(tempExport));
                         deleteFile(tempExport);
                         foreach (string line in exportFile)
                         {
                             if (!String.IsNullOrEmpty(line) && line.IndexOf("Windows Registry Editor Version", StringComparison.OrdinalIgnoreCase) < 0)
                             {
-                                cacheFile.Add(line.StartsWith("[") ? line.Replace(add ? wtRegPath + list[i] : list[i], add ? list[i] : wtRegPath + list[i]) : line);
+                                importList.Add(line.StartsWith("[") ? line.Replace(add ? wtRegPath + list[i] : list[i], add ? list[i] : wtRegPath + list[i]) : line);
                             }
                         }
                         exportFile.Clear();
                     }
                 }
             }
-            importRegistry(cacheFile);
-            cacheFile.Clear();
+            importRegistry(removeList);
+            removeList.Clear();
+            importRegistry(importList);
+            importList.Clear();
             tabControl1.Enabled = true;
+            refrashValues();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         bool getValue(string path, string key, string expect)
@@ -683,34 +694,19 @@ namespace WinTool
             }
             if (deny)
             {
-                if (!folder)
+                if (folder)
                 {
-                    string name = Path.GetFileName(path);
-                    startProcess(1, "/f /im " + name);
-                    int wait = 0;
-                    while (true)
-                    {
-                        Process[] processes = Process.GetProcessesByName(name);
-                        if (processes.Length > 0)
-                        {
-                            if (wait > 1000)
-                            {
-                                break;
-                            }
-                            Thread.Sleep(10);
-                            wait += 10;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
+                    createDirectory(path);
+                }
+                else
+                {
+                    stopProcess(Path.GetFileName(path));
                 }
                 startProcess(5, "/f \"" + path + "\"");
                 startProcess(6, "\"" + path + "\" /grant \"" + Environment.UserName + "\":f /c /l /q");
                 startProcess(6, "\"" + path + "\" /deny \"*S-1-1-0:(W,D,X,R,RX,M,F)\" \"*S-1-5-7:(W,D,X,R,RX,M,F)\"");
             }
-            else if (!folder || Directory.Exists(path))
+            else
             {
                 startProcess(4, "-windowstyle hidden -executionpolicy remotesigned -Command \"& Get-Acl -Path '" + (folder ? Path.Combine(programFilesX86, "Microsoft") : Path.Combine(folderSystem, "control.exe")) + "' | Set-Acl -Path '" + path + "'\"");
             }
@@ -720,11 +716,14 @@ namespace WinTool
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
-        void startProcess(int index, string args)
+        void startProcess(int index, string args = null)
         {
             Process process = new Process();
             process.StartInfo.FileName = exeList[index];
-            process.StartInfo.Arguments = args;
+            if (args != null)
+            {
+                process.StartInfo.Arguments = args;
+            }
             process.StartInfo.CreateNoWindow = true;
             try
             {
@@ -734,17 +733,39 @@ namespace WinTool
                     process.WaitForExit();
                     if (index != 1 && process.HasExited && process.ExitCode > 0)
                     {
-                        Clipboard.SetText(process.StartInfo.FileName + " " + args);
-                        MessageBox.Show(eStart + process.StartInfo.FileName + " " + args);
+                        Clipboard.SetText(exeList[index] + " " + args);
+                        MessageBox.Show(eStart + exeList[index] + " " + args);
                     }
                 }
             }
             catch
             {
-                Clipboard.SetText(process.StartInfo.FileName + " " + args);
-                MessageBox.Show(eStart + process.StartInfo.FileName + " " + args);
+                Clipboard.SetText(exeList[index] + " " + args);
+                MessageBox.Show(eStart + exeList[index] + " " + args);
             }
-            refrashValues();
+        }
+
+        void stopProcess(string name)
+        {
+            startProcess(1, "/f /im \"" + name + "\"");
+            int wait = 0;
+            while (true)
+            {
+                Process[] processes = Process.GetProcessesByName(name);
+                if (processes.Length > 0)
+                {
+                    if (wait > 1000)
+                    {
+                        break;
+                    }
+                    Thread.Sleep(10);
+                    wait += 10;
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         List<string> readTextFile(string path)
@@ -848,7 +869,7 @@ namespace WinTool
         {
             if (File.Exists(exeList[9]))
             {
-                startProcess(9, "");
+                startProcess(9);
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
