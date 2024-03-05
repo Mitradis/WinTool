@@ -950,6 +950,8 @@ namespace WinTool
             service_button3.Text = "Reset mixer";
             service_button4.Text = "Reset compatibility";
             service_button6.Text = "Update certificates";
+            service_button7.Text = "Store Install Service";
+            service_button8.Text = "Firefall Windows";
             service_button10.Text = "System Restore Task";
             service_button11.Text = "Screenshot by Win+Shift+S";
             service_button13.Text = "Default Start";
