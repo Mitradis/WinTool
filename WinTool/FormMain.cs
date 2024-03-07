@@ -74,20 +74,15 @@ namespace WinTool
         public FormMain()
         {
             InitializeComponent();
-            if (!russian)
-            {
-                buttonHelp.Visible = false;
-                toEnglish();
-            }
             if (culture.IndexOf("chinese", StringComparison.OrdinalIgnoreCase) < 0)
             {
                 defaultStart.Add(Path.Combine(folderSystemApps, "MicrosoftWindows.Client.CBS_cw5n1h2txyewy", "TextInputHost.exe"));
             }
             refrashValues();
-            string[] arguments = Environment.GetCommandLineArgs();
-            if (arguments.Length > 0)
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 0)
             {
-                foreach (string line in arguments)
+                foreach (string line in args)
                 {
                     if (line.StartsWith("-setup", StringComparison.OrdinalIgnoreCase))
                     {
@@ -119,6 +114,10 @@ namespace WinTool
                     }
                 }
             }
+            if (!File.Exists(exeList[9]))
+            {
+                buttonHelp.Visible = false;
+            }
             if (!windows11)
             {
                 Text = "Win 10 Tool";
@@ -127,6 +126,10 @@ namespace WinTool
             else
             {
                 tabControl1.Controls.Remove(tabPage3);
+            }
+            if (!russian)
+            {
+                toEnglish();
             }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
@@ -731,7 +734,7 @@ namespace WinTool
                 MessageBox.Show(eStart + exeList[index] + " " + args);
             }
         }
-
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void stopProcess(string name)
         {
             startProcess(1, "/f /im \"" + name + "\"");
@@ -854,10 +857,8 @@ namespace WinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void buttonHelp_Click(object sender, EventArgs e)
         {
-            if (File.Exists(exeList[9]))
-            {
-                startProcess(9);
-            }
+            labelMain.Focus();
+            startProcess(9);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void buttonRefresh_Click(object sender, EventArgs e)
@@ -874,7 +875,6 @@ namespace WinTool
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void buttonClose_Click(object sender, EventArgs e)
         {
-            labelMain.Focus();
             Application.Exit();
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
