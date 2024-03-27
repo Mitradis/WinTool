@@ -101,13 +101,13 @@ namespace WinTool
                             }
                             else if (!parse)
                             {
-                                list.Add(buttons[i].Text + " " + (1 << i).ToString());
+                                list.Add(buttons[i].Text + " " + (1 << i));
                                 total += (uint)1 << i;
                             }
                         }
                         if (!parse)
                         {
-                            list.Add(russian ? "Всего: " + total.ToString() : "Total: " + total.ToString());
+                            list.Add(russian ? "Всего: " + total : "Total: " + total);
                             MessageBox.Show(String.Join(Environment.NewLine, list));
                         }
                         Environment.Exit(0);
@@ -632,11 +632,11 @@ namespace WinTool
                 {
                     if (key != null)
                     {
-                        var val = regkey.GetValue(key);
+                        object value = regkey.GetValue(key);
                         regkey.Close();
-                        if (val != null)
+                        if (value != null)
                         {
-                            return val.ToString() == expect;
+                            return value.ToString() == expect;
                         }
                         else
                         {
