@@ -17,8 +17,12 @@
         private System.Windows.Forms.Button contex_button7;
         private System.Windows.Forms.Button contex_button8;
         private System.Windows.Forms.Button contex_button9;
+        private System.Windows.Forms.Button service_button10;
+        private System.Windows.Forms.Button service_button11;
+        private System.Windows.Forms.Button service_button12;
         private System.Windows.Forms.Button service_button13;
         private System.Windows.Forms.Button service_button14;
+        private System.Windows.Forms.Button service_button15;
         private System.Windows.Forms.Button service_button1;
         private System.Windows.Forms.Button service_button2;
         private System.Windows.Forms.Button service_button3;
@@ -28,9 +32,6 @@
         private System.Windows.Forms.Button service_button7;
         private System.Windows.Forms.Button service_button8;
         private System.Windows.Forms.Button service_button9;
-        private System.Windows.Forms.Button service_button10;
-        private System.Windows.Forms.Button service_button11;
-        private System.Windows.Forms.Button service_button12;
         private System.Windows.Forms.Button thispc_button1;
         private System.Windows.Forms.Button thispc_button2;
         private System.Windows.Forms.Button thispc_button3;
@@ -44,8 +45,8 @@
         private System.Windows.Forms.Label service_label1;
         private System.Windows.Forms.Label thispc_label1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
 
         protected override void Dispose(bool disposing)
@@ -63,14 +64,16 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.service_label1 = new System.Windows.Forms.Label();
+            this.service_button15 = new System.Windows.Forms.Button();
             this.service_button14 = new System.Windows.Forms.Button();
-            this.service_button13 = new System.Windows.Forms.Button();
             this.service_button12 = new System.Windows.Forms.Button();
+            this.service_button13 = new System.Windows.Forms.Button();
             this.service_button11 = new System.Windows.Forms.Button();
-            this.service_button10 = new System.Windows.Forms.Button();
             this.service_button9 = new System.Windows.Forms.Button();
+            this.service_button10 = new System.Windows.Forms.Button();
+            this.service_button7 = new System.Windows.Forms.Button();
+            this.service_button8 = new System.Windows.Forms.Button();
             this.service_button6 = new System.Windows.Forms.Button();
-            this.service_button5 = new System.Windows.Forms.Button();
             this.service_button4 = new System.Windows.Forms.Button();
             this.service_button3 = new System.Windows.Forms.Button();
             this.service_button2 = new System.Windows.Forms.Button();
@@ -102,8 +105,7 @@
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.labelLogo = new System.Windows.Forms.Label();
             this.buttonHelp = new System.Windows.Forms.Button();
-            this.service_button7 = new System.Windows.Forms.Button();
-            this.service_button8 = new System.Windows.Forms.Button();
+            this.service_button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -129,14 +131,15 @@
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.SystemColors.Window;
             this.tabPage1.Controls.Add(this.service_label1);
+            this.tabPage1.Controls.Add(this.service_button15);
             this.tabPage1.Controls.Add(this.service_button14);
-            this.tabPage1.Controls.Add(this.service_button13);
             this.tabPage1.Controls.Add(this.service_button12);
+            this.tabPage1.Controls.Add(this.service_button13);
             this.tabPage1.Controls.Add(this.service_button11);
-            this.tabPage1.Controls.Add(this.service_button10);
-            this.tabPage1.Controls.Add(this.service_button8);
-            this.tabPage1.Controls.Add(this.service_button7);
             this.tabPage1.Controls.Add(this.service_button9);
+            this.tabPage1.Controls.Add(this.service_button10);
+            this.tabPage1.Controls.Add(this.service_button7);
+            this.tabPage1.Controls.Add(this.service_button8);
             this.tabPage1.Controls.Add(this.service_button6);
             this.tabPage1.Controls.Add(this.service_button5);
             this.tabPage1.Controls.Add(this.service_button4);
@@ -160,27 +163,27 @@
             this.service_label1.Text = "Различные сервисные команды:";
             this.service_label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // service_button15
+            // 
+            this.service_button15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.service_button15.Location = new System.Drawing.Point(6, 530);
+            this.service_button15.Name = "service_button15";
+            this.service_button15.Size = new System.Drawing.Size(235, 30);
+            this.service_button15.TabIndex = 14;
+            this.service_button15.Text = "Новое контекстное меню";
+            this.service_button15.UseVisualStyleBackColor = true;
+            this.service_button15.Click += new System.EventHandler(this.service_button15_Click);
+            // 
             // service_button14
             // 
             this.service_button14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.service_button14.Location = new System.Drawing.Point(6, 494);
             this.service_button14.Name = "service_button14";
             this.service_button14.Size = new System.Drawing.Size(235, 30);
-            this.service_button14.TabIndex = 14;
-            this.service_button14.Text = "Новое контекстное меню";
+            this.service_button14.TabIndex = 13;
+            this.service_button14.Text = "Стандартный Пуск";
             this.service_button14.UseVisualStyleBackColor = true;
             this.service_button14.Click += new System.EventHandler(this.service_button14_Click);
-            // 
-            // service_button13
-            // 
-            this.service_button13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.service_button13.Location = new System.Drawing.Point(6, 458);
-            this.service_button13.Name = "service_button13";
-            this.service_button13.Size = new System.Drawing.Size(235, 30);
-            this.service_button13.TabIndex = 13;
-            this.service_button13.Text = "Стандартный Пуск";
-            this.service_button13.UseVisualStyleBackColor = true;
-            this.service_button13.Click += new System.EventHandler(this.service_button13_Click);
             // 
             // service_button12
             // 
@@ -193,27 +196,27 @@
             this.service_button12.UseVisualStyleBackColor = true;
             this.service_button12.Click += new System.EventHandler(this.service_button12_Click);
             // 
+            // service_button13
+            // 
+            this.service_button13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.service_button13.Location = new System.Drawing.Point(6, 458);
+            this.service_button13.Name = "service_button13";
+            this.service_button13.Size = new System.Drawing.Size(235, 30);
+            this.service_button13.TabIndex = 11;
+            this.service_button13.Text = "Скриншот по Win+Shift+S";
+            this.service_button13.UseVisualStyleBackColor = true;
+            this.service_button13.Click += new System.EventHandler(this.service_button13_Click);
+            // 
             // service_button11
             // 
             this.service_button11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.service_button11.Location = new System.Drawing.Point(6, 386);
             this.service_button11.Name = "service_button11";
             this.service_button11.Size = new System.Drawing.Size(235, 30);
-            this.service_button11.TabIndex = 11;
-            this.service_button11.Text = "Скриншот по Win+Shift+S";
+            this.service_button11.TabIndex = 10;
+            this.service_button11.Text = "Задача System Restore";
             this.service_button11.UseVisualStyleBackColor = true;
             this.service_button11.Click += new System.EventHandler(this.service_button11_Click);
-            // 
-            // service_button10
-            // 
-            this.service_button10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.service_button10.Location = new System.Drawing.Point(6, 350);
-            this.service_button10.Name = "service_button10";
-            this.service_button10.Size = new System.Drawing.Size(235, 30);
-            this.service_button10.TabIndex = 10;
-            this.service_button10.Text = "Задача System Restore";
-            this.service_button10.UseVisualStyleBackColor = true;
-            this.service_button10.Click += new System.EventHandler(this.service_button10_Click);
             // 
             // service_button9
             // 
@@ -222,9 +225,42 @@
             this.service_button9.Name = "service_button9";
             this.service_button9.Size = new System.Drawing.Size(235, 30);
             this.service_button9.TabIndex = 9;
-            this.service_button9.Text = "UAC";
+            this.service_button9.Text = "Брандмауэр Windows";
             this.service_button9.UseVisualStyleBackColor = true;
             this.service_button9.Click += new System.EventHandler(this.service_button9_Click);
+            // 
+            // service_button10
+            // 
+            this.service_button10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.service_button10.Location = new System.Drawing.Point(6, 350);
+            this.service_button10.Name = "service_button10";
+            this.service_button10.Size = new System.Drawing.Size(235, 30);
+            this.service_button10.TabIndex = 9;
+            this.service_button10.Text = "Служба установки Store";
+            this.service_button10.UseVisualStyleBackColor = true;
+            this.service_button10.Click += new System.EventHandler(this.service_button10_Click);
+            // 
+            // service_button7
+            // 
+            this.service_button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.service_button7.Location = new System.Drawing.Point(6, 242);
+            this.service_button7.Name = "service_button7";
+            this.service_button7.Size = new System.Drawing.Size(235, 30);
+            this.service_button7.TabIndex = 9;
+            this.service_button7.Text = "UAC";
+            this.service_button7.UseVisualStyleBackColor = true;
+            this.service_button7.Click += new System.EventHandler(this.service_button7_Click);
+            // 
+            // service_button8
+            // 
+            this.service_button8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.service_button8.Location = new System.Drawing.Point(6, 278);
+            this.service_button8.Name = "service_button8";
+            this.service_button8.Size = new System.Drawing.Size(235, 30);
+            this.service_button8.TabIndex = 9;
+            this.service_button8.Text = "Обновление сертификатов";
+            this.service_button8.UseVisualStyleBackColor = true;
+            this.service_button8.Click += new System.EventHandler(this.service_button8_Click);
             // 
             // service_button6
             // 
@@ -232,21 +268,10 @@
             this.service_button6.Location = new System.Drawing.Point(6, 206);
             this.service_button6.Name = "service_button6";
             this.service_button6.Size = new System.Drawing.Size(235, 30);
-            this.service_button6.TabIndex = 9;
-            this.service_button6.Text = "Обновление сертификатов";
+            this.service_button6.TabIndex = 8;
+            this.service_button6.Text = "IPconfig flushDNS";
             this.service_button6.UseVisualStyleBackColor = true;
             this.service_button6.Click += new System.EventHandler(this.service_button6_Click);
-            // 
-            // service_button5
-            // 
-            this.service_button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.service_button5.Location = new System.Drawing.Point(6, 170);
-            this.service_button5.Name = "service_button5";
-            this.service_button5.Size = new System.Drawing.Size(235, 30);
-            this.service_button5.TabIndex = 8;
-            this.service_button5.Text = "IPconfig flushDNS";
-            this.service_button5.UseVisualStyleBackColor = true;
-            this.service_button5.Click += new System.EventHandler(this.service_button5_Click);
             // 
             // service_button4
             // 
@@ -617,27 +642,16 @@
             this.buttonHelp.MouseEnter += new System.EventHandler(this.buttonHelp_MouseEnter);
             this.buttonHelp.MouseLeave += new System.EventHandler(this.buttonHelp_MouseLeave);
             // 
-            // service_button7
+            // service_button5
             // 
-            this.service_button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.service_button7.Location = new System.Drawing.Point(6, 242);
-            this.service_button7.Name = "service_button7";
-            this.service_button7.Size = new System.Drawing.Size(235, 30);
-            this.service_button7.TabIndex = 9;
-            this.service_button7.Text = "Служба установки Store";
-            this.service_button7.UseVisualStyleBackColor = true;
-            this.service_button7.Click += new System.EventHandler(this.service_button7_Click);
-            // 
-            // service_button8
-            // 
-            this.service_button8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.service_button8.Location = new System.Drawing.Point(6, 278);
-            this.service_button8.Name = "service_button8";
-            this.service_button8.Size = new System.Drawing.Size(235, 30);
-            this.service_button8.TabIndex = 9;
-            this.service_button8.Text = "Брандмауэр Windows";
-            this.service_button8.UseVisualStyleBackColor = true;
-            this.service_button8.Click += new System.EventHandler(this.service_button8_Click);
+            this.service_button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.service_button5.Location = new System.Drawing.Point(6, 170);
+            this.service_button5.Name = "service_button5";
+            this.service_button5.Size = new System.Drawing.Size(235, 30);
+            this.service_button5.TabIndex = 7;
+            this.service_button5.Text = "Сбросить историю";
+            this.service_button5.UseVisualStyleBackColor = true;
+            this.service_button5.Click += new System.EventHandler(this.service_button5_Click);
             // 
             // FormMain
             // 

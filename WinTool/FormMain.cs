@@ -88,7 +88,7 @@ namespace WinTool
                     {
                         uint mask = 0;
                         bool parse = UInt32.TryParse(line.Remove(0, line.IndexOf("=") + 1), out mask);
-                        List<Button> buttons = (parse && windows11) || (!parse && line.EndsWith("!")) ? new List<Button>() { contex_button1, contex_button2, contex_button3, contex_button4, contex_button5, contex_button6, contex_button7, contex_button8, contex_button9, service_button11, service_button12, service_button13, service_button14 } : new List<Button>() { contex_button1, contex_button2, contex_button3, contex_button4, contex_button5, contex_button6, contex_button7, contex_button8, contex_button10, thispc_button3, thispc_button4, thispc_button5, thispc_button6, thispc_button7, service_button11, service_button12, service_button13 };
+                        List<Button> buttons = (parse && windows11) || (!parse && line.EndsWith("!")) ? new List<Button>() { contex_button1, contex_button2, contex_button3, contex_button4, contex_button5, contex_button6, contex_button7, contex_button8, contex_button9, service_button12, service_button13, service_button14, service_button15 } : new List<Button>() { contex_button1, contex_button2, contex_button3, contex_button4, contex_button5, contex_button6, contex_button7, contex_button8, contex_button10, thispc_button3, thispc_button4, thispc_button5, thispc_button6, thispc_button7, service_button12, service_button13, service_button14 };
                         List<string> list = new List<string>();
                         uint total = 0;
                         int count = buttons.Count - 1;
@@ -158,12 +158,11 @@ namespace WinTool
             {
                 contex_button10.Visible = false;
                 setColor(contex_button9, @"HKEY_CLASSES_ROOT\*\shell\pintohomefile");
-                setColor(service_button14, @"HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32", null, null, true);
+                setColor(service_button15, @"HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32", null, null, true);
             }
             else
             {
                 contex_button9.Visible = false;
-                service_button14.Visible = false;
                 setColor(contex_button10, @"HKEY_CLASSES_ROOT\exefile\shellex\ContextMenuHandlers\StartMenuExt");
                 setColor(thispc_button1, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}");
                 setColor(thispc_button2, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{D3162B92-9365-467A-956B-92703ACA08AF}");
@@ -172,14 +171,15 @@ namespace WinTool
                 setColor(thispc_button5, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{24ad3ad4-a569-4530-98e1-ab02f9417aa8}");
                 setColor(thispc_button6, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}");
                 setColor(thispc_button7, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}");
+                service_button15.Visible = false;
             }
-            service_button7.ForeColor = getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService", "Start", "3") && getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc", "Start", "2") ? SystemColors.ControlText : Color.Red;
-            setColor(service_button8, @"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc", "Start", "2");
-            setColor(service_button9, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", "1");
-            service_button10.ForeColor = File.Exists(Path.Combine(folderSystem, "Tasks", "Microsoft", "Windows", "SystemRestore", "SR")) ? SystemColors.ControlText : Color.Red;
-            service_button11.ForeColor = getAccessFile(screenClippingHost) ? SystemColors.ControlText : Color.Red;
+            setColor(service_button7, @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System", "EnableLUA", "1");
+            setColor(service_button9, @"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc", "Start", "2");
+            service_button10.ForeColor = getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService", "Start", "3") && getValue(@"HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc", "Start", "2") ? SystemColors.ControlText : Color.Red;
+            service_button11.ForeColor = File.Exists(Path.Combine(folderSystem, "Tasks", "Microsoft", "Windows", "SystemRestore", "SR")) ? SystemColors.ControlText : Color.Red;
             setColor(service_button12, @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate", "version", "999.999.999.999", true);
-            service_button13.ForeColor = getAccessFile(defaultStart[0]) ? SystemColors.ControlText : Color.Red;
+            service_button13.ForeColor = getAccessFile(screenClippingHost) ? SystemColors.ControlText : Color.Red;
+            service_button14.ForeColor = getAccessFile(defaultStart[0]) ? SystemColors.ControlText : Color.Red;
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void contex_button1_Click(object sender, EventArgs e)
@@ -366,11 +366,29 @@ namespace WinTool
         }
         void service_button5_Click(object sender, EventArgs e)
         {
+            importRegistry(new List<string>() {
+                    @"[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\UserAssist]",
+                    @"[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\UserAssist]"
+                });
+        }
+        void service_button6_Click(object sender, EventArgs e)
+        {
             tabControl1.Enabled = false;
             startProcess(7, @"/flushdns");
             tabControl1.Enabled = true;
         }
-        void service_button6_Click(object sender, EventArgs e)
+        void service_button7_Click(object sender, EventArgs e)
+        {
+            importRegistry(service_button7.ForeColor != Color.Red ? new List<string>() {
+                @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]",
+                "\"EnableLUA\"=dword:00000000"
+            } : new List<string>() {
+                @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]",
+                "\"EnableLUA\"=dword:00000001"
+            }, 2);
+            refrashValues();
+        }
+        void service_button8_Click(object sender, EventArgs e)
         {
             if (dialogResult(sCertificates, sConfirm))
             {
@@ -398,24 +416,9 @@ namespace WinTool
             }
             tabControl1.Enabled = true;
         }
-        void service_button7_Click(object sender, EventArgs e)
+        void service_button9_Click(object sender, EventArgs e)
         {
-            importRegistry(service_button7.ForeColor != Color.Red ? new List<string>() {
-                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
-                "\"Start\"=dword:00000004"
-            } : new List<string>() {
-                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
-                "\"Start\"=dword:00000002",
-                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
-                "\"Start\"=dword:00000003"
-            }, 1);
-            blockUnblock(service_button7.ForeColor != Color.Red, smartScreen, false, 2);
-            MessageBox.Show(sRestart);
-            refrashValues();
-        }
-        void service_button8_Click(object sender, EventArgs e)
-        {
-            importRegistry(service_button8.ForeColor != Color.Red ? new List<string>() {
+            importRegistry(service_button9.ForeColor != Color.Red ? new List<string>() {
                 @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
                 "\"Start\"=dword:00000004"
             } : new List<string>() {
@@ -425,29 +428,28 @@ namespace WinTool
             MessageBox.Show(sRestart);
             refrashValues();
         }
-        void service_button9_Click(object sender, EventArgs e)
-        {
-            importRegistry(service_button9.ForeColor != Color.Red ? new List<string>() {
-                @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]",
-                "\"EnableLUA\"=dword:00000000"
-            } : new List<string>() {
-                @"[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]",
-                "\"EnableLUA\"=dword:00000001"
-            }, 2);
-            refrashValues();
-        }
         void service_button10_Click(object sender, EventArgs e)
         {
-            if (service_button10.ForeColor != Color.Red && dialogResult(sRestore, sConfirm))
-            {
-                startProcess(3, @"/delete /tn Microsoft\Windows\SystemRestore\SR /f");
-            }
-            tabControl1.Enabled = true;
+            importRegistry(service_button10.ForeColor != Color.Red ? new List<string>() {
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
+                "\"Start\"=dword:00000004"
+            } : new List<string>() {
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
+                "\"Start\"=dword:00000002",
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
+                "\"Start\"=dword:00000003"
+            }, 1);
+            blockUnblock(service_button10.ForeColor != Color.Red, smartScreen, false, 2);
+            MessageBox.Show(sRestart);
             refrashValues();
         }
         void service_button11_Click(object sender, EventArgs e)
         {
-            blockUnblock(service_button11.ForeColor != Color.Red, screenClippingHost, false, 2);
+            if (service_button11.ForeColor != Color.Red && dialogResult(sRestore, sConfirm))
+            {
+                startProcess(3, @"/delete /tn Microsoft\Windows\SystemRestore\SR /f");
+            }
+            tabControl1.Enabled = true;
             refrashValues();
         }
         void service_button12_Click(object sender, EventArgs e)
@@ -509,8 +511,13 @@ namespace WinTool
         }
         void service_button13_Click(object sender, EventArgs e)
         {
+            blockUnblock(service_button13.ForeColor != Color.Red, screenClippingHost, false, 2);
+            refrashValues();
+        }
+        void service_button14_Click(object sender, EventArgs e)
+        {
             tabControl1.Enabled = false;
-            bool block = service_button13.ForeColor != Color.Red;
+            bool block = service_button14.ForeColor != Color.Red;
             foreach (string line in defaultStart)
             {
                 blockUnblock(block, line);
@@ -518,9 +525,9 @@ namespace WinTool
             tabControl1.Enabled = true;
             refrashValues();
         }
-        void service_button14_Click(object sender, EventArgs e)
+        void service_button15_Click(object sender, EventArgs e)
         {
-            importRegistry(service_button14.ForeColor != Color.Red ? new List<string>() {
+            importRegistry(service_button15.ForeColor != Color.Red ? new List<string>() {
                 @"[HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]"
             } : new List<string>() {
                 @"[-HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]",
@@ -935,6 +942,7 @@ namespace WinTool
         void toEnglish()
         {
             contex_button1.Text = "Pin to taskbar";
+            contex_button10.Text = "Pin for Classic Shell";
             contex_button2.Text = "Pin to home screen";
             contex_button3.Text = "Pin to Quick Access Toolbar";
             contex_button4.Text = "Fix compatibility issues";
@@ -943,22 +951,22 @@ namespace WinTool
             contex_button7.Text = "Grant access to";
             contex_button8.Text = "Add to Library";
             contex_button9.Text = "Add to Favourites";
-            contex_button10.Text = "Pin for Classic Shell";
             contex_label1.Text = "Context menu items:";
             service_button1.Text = "Restart explorer";
+            service_button10.Text = "Store Install Service";
+            service_button11.Text = "System Restore Task";
+            service_button13.Text = "Screenshot by Win+Shift+S";
+            service_button14.Text = "Default Start";
+            service_button15.Text = "New contex menu";
             service_button2.Text = "Reset folders";
             service_button3.Text = "Reset mixer";
             service_button4.Text = "Reset compatibility";
-            service_button6.Text = "Update certificates";
-            service_button7.Text = "Store Install Service";
-            service_button8.Text = "Firefall Windows";
-            service_button10.Text = "System Restore Task";
-            service_button11.Text = "Screenshot by Win+Shift+S";
-            service_button13.Text = "Default Start";
-            service_button14.Text = "New contex menu";
+            service_button5.Text = "Reset history";
+            service_button8.Text = "Update certificates";
+            service_button9.Text = "Firefall Windows";
             service_label1.Text = "Various service commands:";
-            tabPage2.Text = "Context menu";
             tabPage1.Text = "Service";
+            tabPage2.Text = "Context menu";
             tabPage3.Text = "This computer";
             thispc_button1.Text = "Desktop";
             thispc_button2.Text = "Documents";
