@@ -63,6 +63,7 @@ namespace WinTool
         string sConfirm = russian ? "Подтвеждение" : "Confirmation";
         string sExplorer = russian ? "Закрыть Проводник?" : "Close Explorer?";
         string sFolders = russian ? "Сбросить настройки отображения для всех папок?" : "Reset display settings for all folders?";
+        string sHistory = russian ? "Сбросить историю в меню Пуск?" : "Reset history in the Start menu?";
         string sLaunch = russian ? "Запустить?" : "Start?";
         string sMixer = russian ? "Сбросить настройки аудио микшера?" : "Reset audio mixer settings?";
         string sRestart = russian ? "При изменении требуется перезагрузка." : "Changes require a reboot.";
@@ -366,10 +367,16 @@ namespace WinTool
         }
         void service_button5_Click(object sender, EventArgs e)
         {
-            importRegistry(new List<string>() {
+            if (dialogResult(sHistory, sConfirm))
+            {
+                stopProcess("explorer.exe");
+                importRegistry(new List<string>() {
                     @"[-HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\UserAssist]",
                     @"[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\UserAssist]"
                 });
+                startProcess(2);
+                tabControl1.Enabled = true;
+            }
         }
         void service_button6_Click(object sender, EventArgs e)
         {
@@ -534,7 +541,10 @@ namespace WinTool
                 "@=\"\""
             }, 2);
             refrashValues();
-            MessageBox.Show(sRestart);
+            if (Visible)
+            {
+                MessageBox.Show(sRestart);
+            }
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void thispc_button1_Click(object sender, EventArgs e)
