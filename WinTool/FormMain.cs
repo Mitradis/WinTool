@@ -521,6 +521,12 @@ namespace WinTool
             {
                 blockUnblock(block, line);
             }
+            if (!windows11)
+            {
+                toggleButton(((Button)sender).ForeColor == Color.Red, new List<string>() {
+                @"HKEY_CLASSES_ROOT\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\PackageRepository\Packages\Microsoft.Windows.Search_1.14.17.19041_neutral_neutral_cw5n1h2txyewy"
+            });
+            }
             tabControl1.Enabled = true;
             refrashValues();
         }
