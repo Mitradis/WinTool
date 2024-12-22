@@ -31,13 +31,15 @@ namespace WinTool
             Path.Combine(folderSystem, "icacls.exe"),
             Path.Combine(folderSystem, "ipconfig.exe"),
             Path.Combine(folderSystem, "certutil.exe"),
+            Path.Combine(folderSystem, "sc.exe"),
+            Path.Combine(folderSystem, "net.exe"),
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "PostClear", "WinHelp.html")
         };
         List<string> defaultStart = new List<string>() {
             Path.Combine(folderSystemApps, "Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy", "StartMenuExperienceHost.exe"),
             windows11 ? Path.Combine(folderSystemApps, "MicrosoftWindows.Client.CBS_cw5n1h2txyewy", "SearchHost.exe") : Path.Combine(folderSystemApps, "Microsoft.Windows.Search_cw5n1h2txyewy", "SearchApp.exe")
         };
-        string screenClippingHost = Path.Combine(folderSystemApps, "MicrosoftWindows.Client.CBS_cw5n1h2txyewy", "ScreenClippingHost.exe");
+        string screenClippingHost = Path.Combine(folderSystemApps, "MicrosoftWindows.Client.Core_cw5n1h2txyewy", "ScreenClippingHost.exe");
         string smartScreen = Path.Combine(folderSystem, "smartscreen.exe");
         string edgeUpdate = Path.Combine(programFilesX86, "Microsoft", "EdgeUpdate");
         string certLocal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "roots.sst");
@@ -115,6 +117,7 @@ namespace WinTool
             {
                 Text = "Win 10 Tool";
                 labelLogo.Image = Properties.Resources.MainLogo10;
+                tabControl1.Controls.Remove(tabPage4);
             }
             else
             {
@@ -419,6 +422,8 @@ namespace WinTool
         {
             importRegistry(service_button9.ForeColor != Color.Red ? new List<string>() {
                 @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
+                "\"Start\"=dword:00000004",
+                @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\InstallService]",
                 "\"Start\"=dword:00000004"
             } : new List<string>() {
                 @"[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\mpssvc]",
@@ -593,6 +598,14 @@ namespace WinTool
                 @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}",
                 @"HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{f86fa3ab-70d2-4fc7-9c99-fcbf05467f3a}"
             });
+        }
+        // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
+        void fix_button1_Click(object sender, EventArgs e)
+        {
+            startProcess(9, "config RasMan start=auto");
+            startProcess(10, "start RasMan");
+            startProcess(9, "config RasMan start=disabled");
+            startProcess(10, "stop RasMan");
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void setColor(Button button, string path, string key = null, string expect = null, bool invert = false)
@@ -873,7 +886,7 @@ namespace WinTool
         void buttonHelp_Click(object sender, EventArgs e)
         {
             labelMain.Focus();
-            startProcess(9);
+            startProcess(11);
         }
         // ------------------------------------------------ BORDER OF FUNCTION ------------------------------------------------ //
         void buttonRefresh_Click(object sender, EventArgs e)

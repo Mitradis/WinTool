@@ -17,6 +17,7 @@
         private System.Windows.Forms.Button contex_button7;
         private System.Windows.Forms.Button contex_button8;
         private System.Windows.Forms.Button contex_button9;
+        private System.Windows.Forms.Button fix_button1;
         private System.Windows.Forms.Button service_button10;
         private System.Windows.Forms.Button service_button11;
         private System.Windows.Forms.Button service_button12;
@@ -40,6 +41,7 @@
         private System.Windows.Forms.Button thispc_button6;
         private System.Windows.Forms.Button thispc_button7;
         private System.Windows.Forms.Label contex_label1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelLogo;
         private System.Windows.Forms.Label labelMain;
         private System.Windows.Forms.Label service_label1;
@@ -48,6 +50,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
 
         protected override void Dispose(bool disposing)
         {
@@ -74,6 +77,7 @@
             this.service_button7 = new System.Windows.Forms.Button();
             this.service_button8 = new System.Windows.Forms.Button();
             this.service_button6 = new System.Windows.Forms.Button();
+            this.service_button5 = new System.Windows.Forms.Button();
             this.service_button4 = new System.Windows.Forms.Button();
             this.service_button3 = new System.Windows.Forms.Button();
             this.service_button2 = new System.Windows.Forms.Button();
@@ -99,17 +103,20 @@
             this.thispc_button5 = new System.Windows.Forms.Button();
             this.thispc_button3 = new System.Windows.Forms.Button();
             this.thispc_label1 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.fix_button1 = new System.Windows.Forms.Button();
             this.labelMain = new System.Windows.Forms.Label();
             this.buttonMinimize = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.labelLogo = new System.Windows.Forms.Label();
             this.buttonHelp = new System.Windows.Forms.Button();
-            this.service_button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -117,6 +124,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.ItemSize = new System.Drawing.Size(100, 20);
             this.tabControl1.Location = new System.Drawing.Point(9, 39);
             this.tabControl1.Multiline = true;
@@ -146,10 +154,10 @@
             this.tabPage1.Controls.Add(this.service_button3);
             this.tabPage1.Controls.Add(this.service_button2);
             this.tabPage1.Controls.Add(this.service_button1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Location = new System.Drawing.Point(4, 44);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(262, 288);
+            this.tabPage1.Size = new System.Drawing.Size(262, 268);
             this.tabPage1.TabIndex = 4;
             this.tabPage1.Text = "Сервис";
             // 
@@ -272,6 +280,17 @@
             this.service_button6.Text = "IPconfig flushDNS";
             this.service_button6.UseVisualStyleBackColor = true;
             this.service_button6.Click += new System.EventHandler(this.service_button6_Click);
+            // 
+            // service_button5
+            // 
+            this.service_button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.service_button5.Location = new System.Drawing.Point(6, 170);
+            this.service_button5.Name = "service_button5";
+            this.service_button5.Size = new System.Drawing.Size(235, 30);
+            this.service_button5.TabIndex = 7;
+            this.service_button5.Text = "Сбросить историю";
+            this.service_button5.UseVisualStyleBackColor = true;
+            this.service_button5.Click += new System.EventHandler(this.service_button5_Click);
             // 
             // service_button4
             // 
@@ -563,6 +582,39 @@
             this.thispc_label1.Text = "Элементы в Этот компьютер:";
             this.thispc_label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.AutoScroll = true;
+            this.tabPage4.Controls.Add(this.label1);
+            this.tabPage4.Controls.Add(this.fix_button1);
+            this.tabPage4.Location = new System.Drawing.Point(4, 44);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(262, 268);
+            this.tabPage4.TabIndex = 6;
+            this.tabPage4.Text = "Исправления";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(6, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(235, 20);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Исправления:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // fix_button1
+            // 
+            this.fix_button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.fix_button1.Location = new System.Drawing.Point(6, 26);
+            this.fix_button1.Name = "fix_button1";
+            this.fix_button1.Size = new System.Drawing.Size(235, 30);
+            this.fix_button1.TabIndex = 5;
+            this.fix_button1.Text = "Значок сети";
+            this.fix_button1.UseVisualStyleBackColor = true;
+            this.fix_button1.Click += new System.EventHandler(this.fix_button1_Click);
+            // 
             // labelMain
             // 
             this.labelMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -642,17 +694,6 @@
             this.buttonHelp.MouseEnter += new System.EventHandler(this.buttonHelp_MouseEnter);
             this.buttonHelp.MouseLeave += new System.EventHandler(this.buttonHelp_MouseLeave);
             // 
-            // service_button5
-            // 
-            this.service_button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.service_button5.Location = new System.Drawing.Point(6, 170);
-            this.service_button5.Name = "service_button5";
-            this.service_button5.Size = new System.Drawing.Size(235, 30);
-            this.service_button5.TabIndex = 7;
-            this.service_button5.Text = "Сбросить историю";
-            this.service_button5.UseVisualStyleBackColor = true;
-            this.service_button5.Click += new System.EventHandler(this.service_button5_Click);
-            // 
             // FormMain
             // 
             this.ClientSize = new System.Drawing.Size(286, 363);
@@ -677,6 +718,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
