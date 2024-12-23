@@ -973,6 +973,8 @@ namespace WinTool
             contex_button8.Text = "Add to Library";
             contex_button9.Text = "Add to Favourites";
             contex_label1.Text = "Context menu items:";
+            fix_button1.Text = "Network icon";
+            fix_label1.Text = "Various fixes:";
             service_button1.Text = "Restart explorer";
             service_button10.Text = "Store Install Service";
             service_button11.Text = "System Restore Task";
@@ -989,6 +991,7 @@ namespace WinTool
             tabPage1.Text = "Service";
             tabPage2.Text = "Context menu";
             tabPage3.Text = "This computer";
+            tabPage4.Text = "Fixes";
             thispc_button1.Text = "Desktop";
             thispc_button2.Text = "Documents";
             thispc_button3.Text = "3D objects";

@@ -41,7 +41,7 @@
         private System.Windows.Forms.Button thispc_button6;
         private System.Windows.Forms.Button thispc_button7;
         private System.Windows.Forms.Label contex_label1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label fix_label1;
         private System.Windows.Forms.Label labelLogo;
         private System.Windows.Forms.Label labelMain;
         private System.Windows.Forms.Label service_label1;
@@ -104,7 +104,7 @@
             this.thispc_button3 = new System.Windows.Forms.Button();
             this.thispc_label1 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.fix_label1 = new System.Windows.Forms.Label();
             this.fix_button1 = new System.Windows.Forms.Button();
             this.labelMain = new System.Windows.Forms.Label();
             this.buttonMinimize = new System.Windows.Forms.Button();
@@ -137,9 +137,8 @@
             // tabPage1
             // 
             this.tabPage1.AutoScroll = true;
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Window;
-            this.tabPage1.Controls.Add(this.service_label1);
             this.tabPage1.Controls.Add(this.service_button15);
+            this.tabPage1.Controls.Add(this.service_label1);
             this.tabPage1.Controls.Add(this.service_button14);
             this.tabPage1.Controls.Add(this.service_button12);
             this.tabPage1.Controls.Add(this.service_button13);
@@ -177,7 +176,7 @@
             this.service_button15.Location = new System.Drawing.Point(6, 530);
             this.service_button15.Name = "service_button15";
             this.service_button15.Size = new System.Drawing.Size(235, 30);
-            this.service_button15.TabIndex = 14;
+            this.service_button15.TabIndex = 19;
             this.service_button15.Text = "Новое контекстное меню";
             this.service_button15.UseVisualStyleBackColor = true;
             this.service_button15.Click += new System.EventHandler(this.service_button15_Click);
@@ -188,7 +187,7 @@
             this.service_button14.Location = new System.Drawing.Point(6, 494);
             this.service_button14.Name = "service_button14";
             this.service_button14.Size = new System.Drawing.Size(235, 30);
-            this.service_button14.TabIndex = 13;
+            this.service_button14.TabIndex = 18;
             this.service_button14.Text = "Стандартный Пуск";
             this.service_button14.UseVisualStyleBackColor = true;
             this.service_button14.Click += new System.EventHandler(this.service_button14_Click);
@@ -199,7 +198,7 @@
             this.service_button12.Location = new System.Drawing.Point(6, 422);
             this.service_button12.Name = "service_button12";
             this.service_button12.Size = new System.Drawing.Size(235, 30);
-            this.service_button12.TabIndex = 12;
+            this.service_button12.TabIndex = 16;
             this.service_button12.Text = "Edge Update";
             this.service_button12.UseVisualStyleBackColor = true;
             this.service_button12.Click += new System.EventHandler(this.service_button12_Click);
@@ -210,7 +209,7 @@
             this.service_button13.Location = new System.Drawing.Point(6, 458);
             this.service_button13.Name = "service_button13";
             this.service_button13.Size = new System.Drawing.Size(235, 30);
-            this.service_button13.TabIndex = 11;
+            this.service_button13.TabIndex = 17;
             this.service_button13.Text = "Скриншот по Win+Shift+S";
             this.service_button13.UseVisualStyleBackColor = true;
             this.service_button13.Click += new System.EventHandler(this.service_button13_Click);
@@ -221,7 +220,7 @@
             this.service_button11.Location = new System.Drawing.Point(6, 386);
             this.service_button11.Name = "service_button11";
             this.service_button11.Size = new System.Drawing.Size(235, 30);
-            this.service_button11.TabIndex = 10;
+            this.service_button11.TabIndex = 15;
             this.service_button11.Text = "Задача System Restore";
             this.service_button11.UseVisualStyleBackColor = true;
             this.service_button11.Click += new System.EventHandler(this.service_button11_Click);
@@ -232,7 +231,7 @@
             this.service_button9.Location = new System.Drawing.Point(6, 314);
             this.service_button9.Name = "service_button9";
             this.service_button9.Size = new System.Drawing.Size(235, 30);
-            this.service_button9.TabIndex = 9;
+            this.service_button9.TabIndex = 13;
             this.service_button9.Text = "Брандмауэр Windows";
             this.service_button9.UseVisualStyleBackColor = true;
             this.service_button9.Click += new System.EventHandler(this.service_button9_Click);
@@ -243,7 +242,7 @@
             this.service_button10.Location = new System.Drawing.Point(6, 350);
             this.service_button10.Name = "service_button10";
             this.service_button10.Size = new System.Drawing.Size(235, 30);
-            this.service_button10.TabIndex = 9;
+            this.service_button10.TabIndex = 14;
             this.service_button10.Text = "Служба установки Store";
             this.service_button10.UseVisualStyleBackColor = true;
             this.service_button10.Click += new System.EventHandler(this.service_button10_Click);
@@ -254,7 +253,7 @@
             this.service_button7.Location = new System.Drawing.Point(6, 242);
             this.service_button7.Name = "service_button7";
             this.service_button7.Size = new System.Drawing.Size(235, 30);
-            this.service_button7.TabIndex = 9;
+            this.service_button7.TabIndex = 11;
             this.service_button7.Text = "UAC";
             this.service_button7.UseVisualStyleBackColor = true;
             this.service_button7.Click += new System.EventHandler(this.service_button7_Click);
@@ -265,7 +264,7 @@
             this.service_button8.Location = new System.Drawing.Point(6, 278);
             this.service_button8.Name = "service_button8";
             this.service_button8.Size = new System.Drawing.Size(235, 30);
-            this.service_button8.TabIndex = 9;
+            this.service_button8.TabIndex = 12;
             this.service_button8.Text = "Обновление сертификатов";
             this.service_button8.UseVisualStyleBackColor = true;
             this.service_button8.Click += new System.EventHandler(this.service_button8_Click);
@@ -276,7 +275,7 @@
             this.service_button6.Location = new System.Drawing.Point(6, 206);
             this.service_button6.Name = "service_button6";
             this.service_button6.Size = new System.Drawing.Size(235, 30);
-            this.service_button6.TabIndex = 8;
+            this.service_button6.TabIndex = 10;
             this.service_button6.Text = "IPconfig flushDNS";
             this.service_button6.UseVisualStyleBackColor = true;
             this.service_button6.Click += new System.EventHandler(this.service_button6_Click);
@@ -287,7 +286,7 @@
             this.service_button5.Location = new System.Drawing.Point(6, 170);
             this.service_button5.Name = "service_button5";
             this.service_button5.Size = new System.Drawing.Size(235, 30);
-            this.service_button5.TabIndex = 7;
+            this.service_button5.TabIndex = 9;
             this.service_button5.Text = "Сбросить историю";
             this.service_button5.UseVisualStyleBackColor = true;
             this.service_button5.Click += new System.EventHandler(this.service_button5_Click);
@@ -298,7 +297,7 @@
             this.service_button4.Location = new System.Drawing.Point(6, 134);
             this.service_button4.Name = "service_button4";
             this.service_button4.Size = new System.Drawing.Size(235, 30);
-            this.service_button4.TabIndex = 7;
+            this.service_button4.TabIndex = 8;
             this.service_button4.Text = "Сбросить совместимость";
             this.service_button4.UseVisualStyleBackColor = true;
             this.service_button4.Click += new System.EventHandler(this.service_button4_Click);
@@ -309,7 +308,7 @@
             this.service_button3.Location = new System.Drawing.Point(6, 98);
             this.service_button3.Name = "service_button3";
             this.service_button3.Size = new System.Drawing.Size(235, 30);
-            this.service_button3.TabIndex = 6;
+            this.service_button3.TabIndex = 7;
             this.service_button3.Text = "Сбросить микшер";
             this.service_button3.UseVisualStyleBackColor = true;
             this.service_button3.Click += new System.EventHandler(this.service_button3_Click);
@@ -320,7 +319,7 @@
             this.service_button2.Location = new System.Drawing.Point(6, 62);
             this.service_button2.Name = "service_button2";
             this.service_button2.Size = new System.Drawing.Size(235, 30);
-            this.service_button2.TabIndex = 5;
+            this.service_button2.TabIndex = 6;
             this.service_button2.Text = "Сбросить папки";
             this.service_button2.UseVisualStyleBackColor = true;
             this.service_button2.Click += new System.EventHandler(this.service_button2_Click);
@@ -331,7 +330,7 @@
             this.service_button1.Location = new System.Drawing.Point(6, 26);
             this.service_button1.Name = "service_button1";
             this.service_button1.Size = new System.Drawing.Size(235, 30);
-            this.service_button1.TabIndex = 4;
+            this.service_button1.TabIndex = 5;
             this.service_button1.Text = "Перезапустить проводник";
             this.service_button1.UseVisualStyleBackColor = true;
             this.service_button1.Click += new System.EventHandler(this.service_button1_Click);
@@ -339,10 +338,7 @@
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
-            this.tabPage2.BackColor = System.Drawing.SystemColors.Window;
             this.tabPage2.Controls.Add(this.contex_label1);
-            this.tabPage2.Controls.Add(this.contex_button10);
-            this.tabPage2.Controls.Add(this.contex_button9);
             this.tabPage2.Controls.Add(this.contex_button8);
             this.tabPage2.Controls.Add(this.contex_button7);
             this.tabPage2.Controls.Add(this.contex_button6);
@@ -351,10 +347,12 @@
             this.tabPage2.Controls.Add(this.contex_button3);
             this.tabPage2.Controls.Add(this.contex_button2);
             this.tabPage2.Controls.Add(this.contex_button1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Controls.Add(this.contex_button9);
+            this.tabPage2.Controls.Add(this.contex_button10);
+            this.tabPage2.Location = new System.Drawing.Point(4, 44);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(262, 288);
+            this.tabPage2.Size = new System.Drawing.Size(262, 268);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Контекстное меню";
             // 
@@ -385,7 +383,7 @@
             this.contex_button9.Location = new System.Drawing.Point(6, 314);
             this.contex_button9.Name = "contex_button9";
             this.contex_button9.Size = new System.Drawing.Size(235, 30);
-            this.contex_button9.TabIndex = 12;
+            this.contex_button9.TabIndex = 13;
             this.contex_button9.Text = "Добавить в Избранное";
             this.contex_button9.UseVisualStyleBackColor = true;
             this.contex_button9.Click += new System.EventHandler(this.contex_button9_Click);
@@ -396,7 +394,7 @@
             this.contex_button8.Location = new System.Drawing.Point(6, 278);
             this.contex_button8.Name = "contex_button8";
             this.contex_button8.Size = new System.Drawing.Size(235, 30);
-            this.contex_button8.TabIndex = 11;
+            this.contex_button8.TabIndex = 12;
             this.contex_button8.Text = "Добавить в библиотеку";
             this.contex_button8.UseVisualStyleBackColor = true;
             this.contex_button8.Click += new System.EventHandler(this.contex_button8_Click);
@@ -407,7 +405,7 @@
             this.contex_button7.Location = new System.Drawing.Point(6, 242);
             this.contex_button7.Name = "contex_button7";
             this.contex_button7.Size = new System.Drawing.Size(235, 30);
-            this.contex_button7.TabIndex = 10;
+            this.contex_button7.TabIndex = 11;
             this.contex_button7.Text = "Предоставить доступ к";
             this.contex_button7.UseVisualStyleBackColor = true;
             this.contex_button7.Click += new System.EventHandler(this.contex_button7_Click);
@@ -418,7 +416,7 @@
             this.contex_button6.Location = new System.Drawing.Point(6, 206);
             this.contex_button6.Name = "contex_button6";
             this.contex_button6.Size = new System.Drawing.Size(235, 30);
-            this.contex_button6.TabIndex = 9;
+            this.contex_button6.TabIndex = 10;
             this.contex_button6.Text = "Отправить";
             this.contex_button6.UseVisualStyleBackColor = true;
             this.contex_button6.Click += new System.EventHandler(this.contex_button6_Click);
@@ -429,7 +427,7 @@
             this.contex_button5.Location = new System.Drawing.Point(6, 170);
             this.contex_button5.Name = "contex_button5";
             this.contex_button5.Size = new System.Drawing.Size(235, 30);
-            this.contex_button5.TabIndex = 8;
+            this.contex_button5.TabIndex = 9;
             this.contex_button5.Text = "Отправить (Поделиться)";
             this.contex_button5.UseVisualStyleBackColor = true;
             this.contex_button5.Click += new System.EventHandler(this.contex_button5_Click);
@@ -440,7 +438,7 @@
             this.contex_button4.Location = new System.Drawing.Point(6, 134);
             this.contex_button4.Name = "contex_button4";
             this.contex_button4.Size = new System.Drawing.Size(235, 30);
-            this.contex_button4.TabIndex = 7;
+            this.contex_button4.TabIndex = 8;
             this.contex_button4.Text = "Исп. проблем с совместимостью";
             this.contex_button4.UseVisualStyleBackColor = true;
             this.contex_button4.Click += new System.EventHandler(this.contex_button4_Click);
@@ -451,7 +449,7 @@
             this.contex_button3.Location = new System.Drawing.Point(6, 98);
             this.contex_button3.Name = "contex_button3";
             this.contex_button3.Size = new System.Drawing.Size(235, 30);
-            this.contex_button3.TabIndex = 6;
+            this.contex_button3.TabIndex = 7;
             this.contex_button3.Text = "Зак. на панели быстрого доступа";
             this.contex_button3.UseVisualStyleBackColor = true;
             this.contex_button3.Click += new System.EventHandler(this.contex_button3_Click);
@@ -462,7 +460,7 @@
             this.contex_button2.Location = new System.Drawing.Point(6, 62);
             this.contex_button2.Name = "contex_button2";
             this.contex_button2.Size = new System.Drawing.Size(235, 30);
-            this.contex_button2.TabIndex = 5;
+            this.contex_button2.TabIndex = 6;
             this.contex_button2.Text = "Зак. на начальном экране";
             this.contex_button2.UseVisualStyleBackColor = true;
             this.contex_button2.Click += new System.EventHandler(this.contex_button2_Click);
@@ -473,7 +471,7 @@
             this.contex_button1.Location = new System.Drawing.Point(6, 26);
             this.contex_button1.Name = "contex_button1";
             this.contex_button1.Size = new System.Drawing.Size(235, 30);
-            this.contex_button1.TabIndex = 4;
+            this.contex_button1.TabIndex = 5;
             this.contex_button1.Text = "Зак. на панели задач";
             this.contex_button1.UseVisualStyleBackColor = true;
             this.contex_button1.Click += new System.EventHandler(this.contex_button1_Click);
@@ -488,9 +486,9 @@
             this.tabPage3.Controls.Add(this.thispc_button5);
             this.tabPage3.Controls.Add(this.thispc_button3);
             this.tabPage3.Controls.Add(this.thispc_label1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Location = new System.Drawing.Point(4, 44);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(262, 288);
+            this.tabPage3.Size = new System.Drawing.Size(262, 268);
             this.tabPage3.TabIndex = 5;
             this.tabPage3.Text = "Этот компьютер";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -501,7 +499,7 @@
             this.thispc_button1.Location = new System.Drawing.Point(6, 26);
             this.thispc_button1.Name = "thispc_button1";
             this.thispc_button1.Size = new System.Drawing.Size(120, 30);
-            this.thispc_button1.TabIndex = 4;
+            this.thispc_button1.TabIndex = 5;
             this.thispc_button1.Text = "Рабочий стол";
             this.thispc_button1.UseVisualStyleBackColor = true;
             this.thispc_button1.Click += new System.EventHandler(this.thispc_button1_Click);
@@ -512,7 +510,7 @@
             this.thispc_button2.Location = new System.Drawing.Point(136, 26);
             this.thispc_button2.Name = "thispc_button2";
             this.thispc_button2.Size = new System.Drawing.Size(120, 30);
-            this.thispc_button2.TabIndex = 5;
+            this.thispc_button2.TabIndex = 6;
             this.thispc_button2.Text = "Документы";
             this.thispc_button2.UseVisualStyleBackColor = true;
             this.thispc_button2.Click += new System.EventHandler(this.thispc_button2_Click);
@@ -523,7 +521,7 @@
             this.thispc_button7.Location = new System.Drawing.Point(71, 134);
             this.thispc_button7.Name = "thispc_button7";
             this.thispc_button7.Size = new System.Drawing.Size(120, 30);
-            this.thispc_button7.TabIndex = 10;
+            this.thispc_button7.TabIndex = 11;
             this.thispc_button7.Text = "Видео";
             this.thispc_button7.UseVisualStyleBackColor = true;
             this.thispc_button7.Click += new System.EventHandler(this.thispc_button7_Click);
@@ -534,7 +532,7 @@
             this.thispc_button6.Location = new System.Drawing.Point(136, 98);
             this.thispc_button6.Name = "thispc_button6";
             this.thispc_button6.Size = new System.Drawing.Size(120, 30);
-            this.thispc_button6.TabIndex = 9;
+            this.thispc_button6.TabIndex = 10;
             this.thispc_button6.Text = "Музыка";
             this.thispc_button6.UseVisualStyleBackColor = true;
             this.thispc_button6.Click += new System.EventHandler(this.thispc_button6_Click);
@@ -545,7 +543,7 @@
             this.thispc_button4.Location = new System.Drawing.Point(136, 62);
             this.thispc_button4.Name = "thispc_button4";
             this.thispc_button4.Size = new System.Drawing.Size(120, 30);
-            this.thispc_button4.TabIndex = 7;
+            this.thispc_button4.TabIndex = 8;
             this.thispc_button4.Text = "Загрузки";
             this.thispc_button4.UseVisualStyleBackColor = true;
             this.thispc_button4.Click += new System.EventHandler(this.thispc_button4_Click);
@@ -556,7 +554,7 @@
             this.thispc_button5.Location = new System.Drawing.Point(6, 98);
             this.thispc_button5.Name = "thispc_button5";
             this.thispc_button5.Size = new System.Drawing.Size(120, 30);
-            this.thispc_button5.TabIndex = 8;
+            this.thispc_button5.TabIndex = 9;
             this.thispc_button5.Text = "Изображения";
             this.thispc_button5.UseVisualStyleBackColor = true;
             this.thispc_button5.Click += new System.EventHandler(this.thispc_button5_Click);
@@ -567,7 +565,7 @@
             this.thispc_button3.Location = new System.Drawing.Point(6, 62);
             this.thispc_button3.Name = "thispc_button3";
             this.thispc_button3.Size = new System.Drawing.Size(120, 30);
-            this.thispc_button3.TabIndex = 6;
+            this.thispc_button3.TabIndex = 7;
             this.thispc_button3.Text = "3D объекты";
             this.thispc_button3.UseVisualStyleBackColor = true;
             this.thispc_button3.Click += new System.EventHandler(this.thispc_button3_Click);
@@ -585,7 +583,7 @@
             // tabPage4
             // 
             this.tabPage4.AutoScroll = true;
-            this.tabPage4.Controls.Add(this.label1);
+            this.tabPage4.Controls.Add(this.fix_label1);
             this.tabPage4.Controls.Add(this.fix_button1);
             this.tabPage4.Location = new System.Drawing.Point(4, 44);
             this.tabPage4.Name = "tabPage4";
@@ -594,15 +592,15 @@
             this.tabPage4.Text = "Исправления";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // fix_label1
             // 
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(6, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(235, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Исправления:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.fix_label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.fix_label1.Location = new System.Drawing.Point(6, 3);
+            this.fix_label1.Name = "fix_label1";
+            this.fix_label1.Size = new System.Drawing.Size(235, 20);
+            this.fix_label1.TabIndex = 0;
+            this.fix_label1.Text = "Различные исправления:";
+            this.fix_label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // fix_button1
             // 
