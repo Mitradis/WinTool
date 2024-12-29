@@ -39,7 +39,7 @@ namespace WinTool
             Path.Combine(folderSystemApps, "Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy", "StartMenuExperienceHost.exe"),
             windows11 ? Path.Combine(folderSystemApps, "MicrosoftWindows.Client.CBS_cw5n1h2txyewy", "SearchHost.exe") : Path.Combine(folderSystemApps, "Microsoft.Windows.Search_cw5n1h2txyewy", "SearchApp.exe")
         };
-        string screenClippingHost = Path.Combine(folderSystemApps, "MicrosoftWindows.Client.Core_cw5n1h2txyewy", "ScreenClippingHost.exe");
+        string screenClippingHost = windows11 ? Path.Combine(folderSystemApps, "MicrosoftWindows.Client.Core_cw5n1h2txyewy", "ScreenClippingHost.exe") : Path.Combine(folderSystemApps, "MicrosoftWindows.Client.CBS_cw5n1h2txyewy", "ScreenClippingHost.exe");
         string smartScreen = Path.Combine(folderSystem, "smartscreen.exe");
         string edgeUpdate = Path.Combine(programFilesX86, "Microsoft", "EdgeUpdate");
         string certLocal = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "roots.sst");
